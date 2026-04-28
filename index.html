@@ -461,15 +461,122 @@
       padding: 20px 0; text-align: center; font-size: 13px;
     }
 
-    /* Responsive */
+    /* ── SECTION PADDING ── */
+    section { padding: 80px 0; }
     @media (max-width: 768px) {
+      section { padding: 50px 0; }
+    }
+
+    /* ── LOGO STRIP ANIMATION ── */
+    .logo-strip {
+      overflow: hidden;
+      display: flex;
+    }
+    .logo-strip-inner {
+      display: flex;
+      gap: 30px;
+      animation: scroll 30s linear infinite;
+    }
+    .logo-strip-inner:hover { animation-play-state: paused; }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── MOBILE NAV ── */
+    @media (max-width: 991px) {
+      .navbar-collapse {
+        padding: 20px 0;
+        text-align: center;
+      }
+      .navbar-nav .nav-link {
+        padding: 12px 0 !important;
+        font-size: 18px;
+        border-bottom: 1px solid var(--border);
+      }
+      .navbar-nav .nav-link:last-child { border-bottom: none; }
+    }
+
+    /* ── BACK TO TOP ── */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    #backToTop.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    #backToTop:hover {
+      background: var(--primary-dark);
+      transform: translateY(-5px);
+    }
+    @media (max-width: 576px) {
+      #backToTop { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 20px; }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1200px) {
+      .hero h1 { font-size: 36px; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 992px) {
+      .topbar-marquee { display: none; }
+      .topbar-right { width: 100%; justify-content: center; flex-wrap: wrap; }
+      .navbar-brand img { max-height: 60px !important; }
+      .hero { padding: 40px 0; text-align: center; }
+      .hero h1 { font-size: 32px; }
+      .feature-list { justify-items: center; }
+      .feature-list li { text-align: left; }
+      .hero .d-flex { justify-content: center; }
+      .section-title { font-size: 30px; }
+      .pricing-card { margin-bottom: 20px; }
+    }
+
+    @media (max-width: 768px) {
+      .topbar-right { font-size: 14px !important; gap: 10px; }
+      .topbar-right a { font-size: 12px; }
+      .btn-whatsapp { padding: 4px 12px; font-size: 12px; }
       .hero h1 { font-size: 28px; }
       .section-title { font-size: 26px; }
       .portfolio-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
       .contact-card.wide { grid-column: 1; }
-      .topbar-right { gap: 8px; }
       .feature-list { grid-template-columns: 1fr; }
+      .pricing-card { padding: 25px 20px; }
+      .stat-number { font-size: 32px; }
+      .footer-ratings { flex-direction: column; gap: 15px; }
+    }
+
+    @media (max-width: 576px) {
+      .topbar-right a:not(.btn-whatsapp) { display: none; } /* Hide email/phone text on very small screens, keep WhatsApp */
+      .topbar-right { justify-content: flex-end; }
+      .navbar-brand img { max-height: 50px !important; }
+      .hero h1 { font-size: 24px; }
+      .btn-primary, .btn-outline-primary { width: 100%; }
+      .service-card { padding: 20px; }
+      .stat-card { padding: 20px 10px; }
+      .stat-number { font-size: 28px; }
+      .faq-header { padding: 15px 20px; }
+      .faq-question { font-size: 16px; }
+      .footer-social { justify-content: center; }
     }
 
    
@@ -490,12 +597,11 @@
           ⭐ 11+ Years of experience with 100+ in-house developers &nbsp;&nbsp;&nbsp;          
         </span>
       </div>
-      <div class="topbar-right" style="font: bold; font-size: 18px;" >
-        <a href="mailto:info@Lso360seoplugin.com"><i class="bi bi-envelope me-1"></i>
-info@Lso360seoplugin.com</a>
-        <a href="tel:+918527104123"> <i class="bi bi-telephone-fill"></i> +91 8527104123</a>
-        <a href="tel:+918920841865"><i class="bi bi-telephone-fill"></i> +91 8920841865</a>
-        <a href="https://wa.me/918527104123" class="btn-whatsapp"><i class="bi bi-whatsapp"></i> WhatsApp</a>        
+      <div class="topbar-right">
+        <a href="mailto:info@Lso360seoplugin.com" class="d-none d-sm-inline-block"><i class="bi bi-envelope me-1"></i> <span class="d-none d-md-inline">info@Lso360seoplugin.com</span></a>
+        <a href="tel:+918527104123"><i class="bi bi-telephone-fill me-1"></i> <span class="d-none d-md-inline">+91 8527104123</span></a>
+        <a href="tel:+918920841865" class="d-none d-lg-inline-block"><i class="bi bi-telephone-fill me-1"></i> <span class="d-none d-md-inline">+91 8920841865</span></a>
+        <a href="https://wa.me/918527104123" class="btn-whatsapp"><i class="bi bi-whatsapp"></i> <span class="d-none d-sm-inline">WhatsApp</span></a>        
       </div>
     </div>
   </div>
@@ -573,11 +679,8 @@ info@Lso360seoplugin.com</a>
     <p class="section-sub">Powering digital success for innovative companies worldwide</p>
   </div>
   <div class="logo-strip px-3">
-    
-    <marquee behavior="scroll" direction="left" scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();">
     <div class="logo-strip-inner">
-      <!-- Real logos via text fallback -->
-       <div class="logo-box"><img src="./Images/Cmp_10.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_10.png" alt=""></div>
       <div class="logo-box"><img src="./Images/Cmp_01.png" alt=""></div>
       <div class="logo-box"><img src="./Images/Cmp_02.png" alt=""></div>
       <div class="logo-box"><img src="./Images/Cmp_03.png" alt=""></div>
@@ -600,9 +703,7 @@ info@Lso360seoplugin.com</a>
       <div class="logo-box"><img src="./Images/Cmp_08.png" alt=""></div>
       <div class="logo-box"><img src="./Images/Cmp_09.png" alt=""></div>
       <div class="logo-box"><img src="./Images/Cmp_11.png" alt=""></div>
-      
     </div>
-    </marquee>
   </div>
 </section>
 
@@ -1066,6 +1167,8 @@ info@Lso360seoplugin.com</a>
   </div>
 </footer>
 
+<button id="backToTop" aria-label="Back to Top"><i class="bi bi-arrow-up"></i></button>
+
 <!-- ═══ POPUP MODAL ═══ -->
 <div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -1142,11 +1245,23 @@ info@Lso360seoplugin.com</a>
   // Navbar border shadow on scroll
   window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
+    const backToTop = document.getElementById('backToTop');
+    
     if (window.scrollY > 40) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
+
+    if (window.scrollY > 400) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
+
+  document.getElementById('backToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   // Auto-show popup after 5 seconds
