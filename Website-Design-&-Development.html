@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Website Design & Development | LSO 360 Automated SEO Plugin</title>
+  <link rel="icon" href="./Images/logo.jpg" type="image/png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #7048e8;
+      --primary-dark: #5f3dc4;
+      --primary-light: #f3f0ff;
+      --dark: #111827;
+      --text: #374151;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --btn-bg: #7048e8;
+      --btn-hover: #5f3dc4;
+      --btn-shadow: 0 4px 20px rgba(112, 72, 232, 0.35);
+    }
+    html { scroll-padding-top: 85px; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); margin: 0; }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text);
+      padding: 7px 0;
+    }
+    .topbar-marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .topbar-marquee span {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .topbar-right { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+    .topbar-right a { color: var(--text); text-decoration: none; font-size: 13px; }
+    .topbar-right a:hover { color: var(--primary); }
+    .btn-whatsapp {
+      background: var(--btn-bg);
+      color: #fff !important;
+      border-radius: 30px;
+      padding: 5px 16px;
+      font-weight: 600;
+      font-size: 13px;
+      display: flex; align-items: center; gap: 6px;
+      box-shadow: var(--btn-shadow);
+      transition: all .2s;
+    }
+    .btn-whatsapp:hover { background: var(--btn-hover); }
+
+    /* ── NAVBAR ── */
+    .navbar { background: #fff; border-bottom: 1px solid var(--border); transition: all 0.3s ease; }
+    .navbar.scrolled { border-bottom: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    .navbar-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .logo-circle {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 60%, #4c2889);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 15px; color: #fff; letter-spacing: -1px;
+    }
+    .logo-text { line-height: 1.1; }
+    .logo-text .go { color: var(--primary); font-weight: 900; font-size: 22px; }
+    .logo-text .milestone { color: var(--dark); font-weight: 800; font-size: 20px; }
+    .logo-text .tagline { color: var(--muted); font-size: 10px; display: block; }
+    .navbar-nav .nav-link {
+      color: var(--dark) !important; font-weight: 500; font-size: 15px;
+      padding: 6px 14px !important;
+    }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--primary) !important; }
+    .primary-indicator {
+      width: 5px; background: var(--primary); position: fixed; right: 0;
+      top: 0; height: 100vh; z-index: 999;
+    }
+
+    /* ── HERO ── */
+    .hero { background: #f9fafb; padding: 70px 0 60px; }
+    .hero h1 { font-size: 42px; font-weight: 900; color: var(--dark); line-height: 1.15; margin-bottom: 20px; }
+    .hero p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 28px; }
+    .feature-list { list-style: none; padding: 0; margin: 0 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; }
+    .feature-list li { display: flex; align-items: center; gap: 9px; font-size: 15px; color: var(--text); }
+    .feature-list li i { color: var(--primary); font-size: 18px; }
+    .btn-primary { background: var(--btn-bg); color: #fff; border: none; border-radius: 8px; padding: 13px 28px; font-weight: 700; font-size: 15px; cursor: pointer; transition: all .2s; box-shadow: var(--btn-shadow); }
+    .btn-primary:hover { background: var(--btn-hover); color: #fff; }
+    .btn-outline-primary { background: transparent; color: var(--dark); border: 2px solid var(--dark); border-radius: 8px; padding: 12px 28px; font-weight: 700; font-size: 15px; cursor: pointer; transition: all .2s; }
+    .btn-outline-primary:hover { border-color: var(--btn-bg); color: var(--btn-bg); box-shadow: var(--btn-shadow); }
+
+    /* Quote Form */
+    .quote-card {
+      background: #fff; border: 2px solid var(--primary); border-radius: 16px;
+      padding: 32px 28px; box-shadow: 0 8px 32px rgba(112, 72, 232, 0.08);
+    }
+    .quote-card h4 { font-weight: 800; font-size: 20px; margin-bottom: 20px; }
+    .quote-card .form-control, .quote-card .form-select {
+      border-radius: 8px; border: 1px solid var(--border);
+      padding: 12px 14px; font-size: 14px; color: var(--text);
+      margin-bottom: 14px;
+    }
+    .quote-card .form-control:focus, .quote-card .form-select:focus {
+      box-shadow: 0 0 0 3px rgba(112, 72, 232, 0.15); border-color: var(--primary);
+    }
+    .phone-row { display: flex; gap: 10px; margin-bottom: 14px; }
+    .phone-row select { width: 110px; flex-shrink: 0; border-radius: 8px; border: 1px solid var(--border); padding: 12px 8px; font-size: 14px; }
+    .phone-row input { flex: 1; border-radius: 8px; border: 1px solid var(--border); padding: 12px 14px; font-size: 14px; }
+    .phone-row select:focus, .phone-row input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(112, 72, 232, 0.15); }
+    .btn-book {
+      background: var(--btn-bg); color: #fff; width: 100%; border: none;
+      border-radius: 8px; padding: 14px; font-weight: 700; font-size: 15px; cursor: pointer;
+      box-shadow: var(--btn-shadow); transition: background .2s;
+    }
+    .btn-book:hover { background: var(--btn-hover); }
+
+    /* Section Labels */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1.5px solid var(--primary); color: var(--primary);
+      border-radius: 30px; padding: 5px 16px; font-size: 13px; font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .section-title { font-weight: 900; font-size: 36px; color: var(--dark); }
+    .section-title .highlight { color: var(--primary); }
+    .section-sub { color: var(--muted); font-size: 16px; max-width: 680px; margin: 0 auto 40px; }
+
+    /* ── PARTNERS LOGO STRIP ── */
+    .partners { padding: 60px 0; background: #fff; }
+    .logo-strip { overflow: hidden; position: relative; }
+    .logo-strip-inner {
+      display: inline-flex; gap: 20px;
+      white-space: nowrap;
+    }
+    .logo-box {
+      min-width: 80px;  height: 70px; background: #fff; 
+      border: 1px solid var(--border); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px 18px; flex-shrink: 0;
+    }
+    .logo-box img { max-height: 70px; object-fit: contain; filter: grayscale(20%); }
+    .logo-box span { font-weight: 800; font-size: 15px; color: #333; }
+
+    /* ── SERVICES ── */
+    .services { padding: 70px 0; background: #f9fafb; }
+    .service-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      padding: 30px 28px; margin-bottom: 24px; transition: box-shadow .2s;
+    }
+    .service-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+    .service-card h5 { font-weight: 800; font-size: 18px; margin-bottom: 12px; }
+    .service-card p { color: var(--muted); font-size: 14.5px; line-height: 1.7; margin: 0; }
+    .service-check { color: var(--primary); font-size: 20px; margin-right: 10px; }
+
+    /* ── PORTFOLIO ── */
+    .portfolio { padding: 70px 0; background: #fff; }
+    .tab-pills { display: flex; gap: 10px; justify-content: center; margin-bottom: 36px; flex-wrap: wrap; }
+    .tab-pill {
+      border: 1.5px solid var(--border); background: #fff; color: var(--dark);
+      border-radius: 30px; padding: 10px 26px; font-weight: 600; font-size: 14px;
+      cursor: pointer; transition: all .2s;
+    }
+    .tab-pill.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .tab-pill:hover:not(.active) { border-color: var(--primary); color: var(--primary); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .portfolio-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1.1;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    .portfolio-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .portfolio-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .portfolio-card:hover img { transform: scale(1.05); }
+    
+    .portfolio-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+
+    .portfolio-content-wrap {
+      transform: translateY(15px);
+      transition: transform 0.4s ease;
+    }
+    .portfolio-card:hover .portfolio-content-wrap { transform: translateY(0); }
+
+    .portfolio-card h5 { font-weight: 800; font-size: 20px; margin-bottom: 4px; }
+    .portfolio-card p { font-size: 13px; color: #d1d5db; margin-bottom: 18px; line-height: 1.4; }
+    
+    .btn-view {
+      background: var(--btn-bg);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      transition: all 0.3s;
+      box-shadow: var(--btn-shadow);
+    }
+    .btn-view:hover { background: #fff; color: var(--btn-bg); }
+
+    /* ── PRICING ── */
+    .pricing { padding: 70px 0; background: #f9fafb; }
+    .pricing-card {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 16px;
+      padding: 36px 30px; height: 100%; position: relative;
+      display: flex; flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+      border-color: var(--primary);
+    }
+    .pricing-card.popular {
+      border-color: var(--primary); border-top: none;
+    }
+    .popular-badge {
+      background: var(--primary); color: #fff; text-align: center;
+      padding: 10px; border-radius: 14px 14px 0 0; font-weight: 700;
+      font-size: 13px; letter-spacing: 1px;
+    }
+    .pricing-icon {
+      width: 56px; height: 56px; background: var(--primary-light); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: var(--primary); margin-bottom: 20px;
+    }
+    .pricing-card h4 { font-weight: 900; font-size: 22px; margin-bottom: 6px; }
+    .pricing-card .sub { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+    .price-label { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 2px; }
+    .price-amt { font-size: 42px; font-weight: 900; color: var(--primary); }
+    .price-amt small { font-size: 16px; font-weight: 600; color: var(--muted); }
+    .custom-price { font-size: 22px; font-weight: 800; color: var(--primary); }
+    .custom-price-sub { font-size: 13px; color: var(--muted); }
+    .feature-items { list-style: none; padding: 0; margin: 22px 0 28px; flex-grow: 1; }
+    .feature-items li { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; color: var(--text); margin-bottom: 10px; }
+    .feature-items li i { color: var(--primary); font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+    .btn-get-started {
+      border: 2px solid var(--btn-bg); color: var(--btn-bg); background: #fff;
+      width: 100%; border-radius: 8px; padding: 12px; font-weight: 700;
+      font-size: 15px; cursor: pointer; transition: all .2s;
+    }
+    .btn-get-started:hover { background: var(--btn-bg); color: #fff; box-shadow: var(--btn-shadow); }
+    .btn-contact-price {
+      background: var(--btn-bg); color: #fff; border: none; width: 100%;
+      border-radius: 8px; padding: 12px; font-weight: 700; font-size: 15px; cursor: pointer;
+      box-shadow: var(--btn-shadow); transition: background .2s;
+    }
+    .btn-contact-price:hover { background: var(--btn-hover); }
+
+    /* ── TECH PARTNERS ── */
+    .tech-partners { padding: 70px 0; background: #fff; }
+    .partner-card {
+      border: 1.5px solid var(--border); border-radius: 14px; padding: 28px 20px;
+      text-align: center; transition: border-color .2s;
+    }
+    .partner-card.highlighted { border-color: var(--primary); }
+    .partner-card:hover { border-color: var(--primary); }
+    .partner-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600;
+      margin-top: 14px;
+    }
+    .badge-blue { background: #eff6ff; color: #1d4ed8; }
+    .badge-primary { background: var(--primary-light); color: var(--primary); }
+    .badge-pink { background: #fdf2f8; color: #be185d; }
+    .badge-yellow { background: #fefce8; color: #854d0e; }
+
+    /* ── STATS ── */
+    .stats { padding: 70px 0; background: #f9fafb; }
+    .stat-card {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 16px;
+      padding: 32px 20px; text-align: center; transition: border-color .2s, box-shadow .2s;
+    }
+    .stat-card.highlighted {
+      border-color: var(--primary); position: relative;
+    }
+    .stat-card.highlighted::after {
+      content: '✦'; position: absolute; top: 12px; right: 14px;
+      font-size: 18px; color: #f59e0b;
+    }
+    .stat-icon {
+      width: 54px; height: 54px; background: var(--primary); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: #fff; margin: 0 auto 14px;
+    }
+    .stat-number { font-size: 40px; font-weight: 900; color: var(--primary); }
+    .stat-label { color: var(--muted); font-size: 14px; margin-top: 4px; }
+    .join-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1.5px solid var(--border); border-radius: 30px;
+      padding: 8px 22px; font-size: 14px; font-weight: 500; color: var(--text);
+      margin-top: 40px;
+    }
+    .join-badge .dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #f3f0ff 0%, #e5dbff 100%);
+      padding: 60px 0; text-align: center;
+    }
+    .cta-section h2 { font-size: 36px; font-weight: 900; margin-bottom: 14px; }
+    .cta-section p { color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto 30px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111827; color: #9ca3af; padding: 60px 0 0;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px;}
+    .footer-logo .circle {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #4c2889);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; color: #fff; font-size: 13px;
+    }
+    .footer-logo .ft { color: #fff; font-weight: 800; font-size: 18px; }
+    .footer-desc { font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+    .footer-ratings { display: flex; gap: 30px; margin-bottom: 22px; }
+    .rating-block h6 { font-size: 13px; color: #d1d5db; margin-bottom: 4px; }
+    .stars { color: #f59e0b; font-size: 14px; }
+    .rating-score { font-size: 13px; color: #d1d5db; margin-top: 2px; }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+    .footer-social a {
+      width: 44px; height: 44px; border-radius: 50%; 
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: #9ca3af; text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .footer-social a svg {
+      width: 20px; height: 20px; fill: currentColor;
+    }
+    /* Override inline fills for Google Play icon to allow color change */
+    .footer-social a.fsoc-play svg path {
+      fill: currentColor;
+    }
+    .footer-social a:hover { 
+      background: rgba(255, 255, 255, 0.15); 
+      color: #fff; 
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Social Media Brand Hover Colors */
+    .footer-social a.fsoc-fb:hover { background: #1877f2; border-color: #1877f2; }
+    .footer-social a.fsoc-insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; }
+    .footer-social a.fsoc-wa:hover { background: #25d366; border-color: #25d366; }
+    .footer-social a.fsoc-mail:hover { background: #EA4335; border-color: #EA4335; }
+    .footer-social a.fsoc-yt:hover { background: #ff0000; border-color: #ff0000; }
+    .footer-social a.fsoc-play:hover { background: #4285F4; border-color: #4285F4; }
+
+    /* ── FAQ ── */
+    .faq { padding: 80px 0; background: #fff; }
+    .faq-container { max-width: 850px; margin: 0 auto; }
+    .faq-item {
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+    .faq-item.active {
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(112, 72, 232, 0.08);
+    }
+    .faq-header {
+      padding: 24px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .faq-question {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--dark);
+      margin: 0;
+      padding-right: 20px;
+    }
+    .faq-item.active .faq-question {
+      color: var(--primary);
+    }
+    .faq-icon-box {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #f3f4f6; color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s ease; flex-shrink: 0;
+      font-size: 18px;
+    }
+    .faq-item.active .faq-icon-box {
+      background: var(--primary);
+      color: #fff;
+    }
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+    }
+    .faq-item.active .faq-body {
+      max-height: 1000px;
+      transition: max-height 1s ease-in-out;
+    }
+    .faq-content {
+      padding: 0 30px 24px;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.7;
+    }
+
+    .footer-contact h5 { color: #fff; font-weight: 700; font-size: 18px; margin-bottom: 20px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .contact-card {
+      background: #1f2937; border-radius: 10px; padding: 16px 18px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .contact-card.wide { grid-column: 1 / -1; }
+    .contact-icon {
+      width: 40px; height: 40px; background: var(--primary); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-icon i { color: #fff; font-size: 18px; }
+    .contact-label { font-size: 12px; color: #6b7280; margin-bottom: 2px; }
+    .contact-value { font-size: 14px; color: #fff; font-weight: 600; }
+    .footer-bottom {
+      border-top: 1px solid #1f2937; margin-top: 50px;
+      padding: 20px 0; text-align: center; font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 28px; }
+      .section-title { font-size: 26px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-card.wide { grid-column: 1; }
+      .topbar-right { gap: 8px; }
+      .feature-list { grid-template-columns: 1fr; }
+    }
+
+   
+  </style>
+</head>
+<body>
+
+<!-- Theme side indicator -->
+<div class="primary-indicator"></div>
+
+<!-- ═══ TOP BAR ═══ -->
+<div class="topbar">
+  <div class="container-fluid px-4">
+    <div class="d-flex align-items-center">
+      <div class="topbar-marquee me-4">
+        <span>
+          ⭐ 11+ Years of experience with 100+ in-house developers &nbsp;&nbsp;&nbsp;
+          ⭐ 11+ Years of experience with 100+ in-house developers &nbsp;&nbsp;&nbsp;          
+        </span>
+      </div>
+      <div class="topbar-right" style="font: bold; font-size: 18px;" >
+        <a href="mailto:info@Lso360seoplugin.com"><i class="bi bi-envelope me-1"></i>
+info@Lso360seoplugin.com</a>
+        <a href="tel:+918527104123"> <i class="bi bi-telephone-fill"></i> +91 8527104123</a>
+        <a href="tel:+918920841865"><i class="bi bi-telephone-fill"></i> +91 8920841865</a>
+        <a href="https://wa.me/918527104123" class="btn-whatsapp"><i class="bi bi-whatsapp"></i> WhatsApp</a>        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="./Images/logo.jpg" alt="GoMilestone Logo" style="max-height: 86px;">
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Website Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="about">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <h1>Smart Website Design & Development | LSO 360 Automated SEO Plugin</h1>
+        <p>We help businesses create modern, fast and scalable websites that deliver real performance. With LSO 360 Automated SEO Plugin, every website is built with SEO from the start to improve visibility and drive consistent growth.</p>
+        <p>Our expertise includes website design, custom web development, Shopify and ecommerce solutions tailored for startups and growing brands.</p>
+        
+        <ul class="feature-list">
+          <li><i class="bi bi-check-circle-fill"></i> 11+ Years of Development Experience</li>
+          <li><i class="bi bi-check-circle-fill"></i> 600+ Successful Projects Delivered</li>
+          <li><i class="bi bi-check-circle-fill"></i> SEO-Optimized Websites with LSO 360 Automated SEO Plugin</li>
+          <li><i class="bi bi-check-circle-fill"></i> Trusted by Businesses Worldwide</li>
+        </ul>
+        <div class="d-flex gap-3 flex-wrap">
+        <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#quoteModal">Get Free Consultation</button>
+        <button class="btn-outline-primary" onclick="document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });">View Our Solutions</button>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <form action="https://formsubmit.co/info@Lso360seoplugin.com" method="POST" class="quote-card">
+          <input type="hidden" name="_captcha" value="false">
+          <h4>Get a Free Website Quote in 30 Minutes</h4>
+          <input type="text" name="Full Name" class="form-control" placeholder="Full Name *" required/>
+          <div class="phone-row">
+            <select name="Country Code">
+              <option value="+91">+91 (IN)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+1">+1 (US)</option>
+            </select>
+            <input type="tel" name="Mobile Number" placeholder="Mobile Number *" required/>
+          </div>
+          <input type="email" name="Email Address" class="form-control" placeholder="Email ID *" required/>
+          <textarea name="Message" class="form-control" rows="3" placeholder="Message" style="resize:none;margin-bottom:18px;"></textarea>
+          <button type="submit" class="btn-book">Book a FREE Consultation &nbsp;→</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUSTED PARTNERS ═══ -->
+<section class="partners">
+  <div class="container text-center mb-4">
+    <div class="section-label"><i class="bi bi-briefcase"></i> Trusted Partnerships</div>
+    <h2 class="section-title">Trusted by <span class="highlight">Industry Leaders</span></h2>
+    <p class="section-sub">Powering digital success for innovative companies worldwide</p>
+  </div>
+  <div class="logo-strip px-3">
+    
+    <marquee behavior="scroll" direction="left" scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();">
+    <div class="logo-strip-inner">
+      <!-- Real logos via text fallback -->
+       <div class="logo-box"><img src="./Images/Cmp_10.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_01.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_02.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_03.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_04.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_05.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_06.jpg" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_07.jpg" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_08.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_09.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_11.png" alt=""></div>
+
+      <div class="logo-box"><img src="./Images/Cmp_10.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_01.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_02.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_03.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_04.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_05.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_06.jpg" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_07.jpg" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_08.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_09.png" alt=""></div>
+      <div class="logo-box"><img src="./Images/Cmp_11.png" alt=""></div>
+      
+    </div>
+    </marquee>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label"><i class="bi bi-grid"></i> Our Expertise</div>
+      <h2 class="section-title">Website Design & Development That Builds, <span class="highlight">Ranks & Grows</span></h2>
+      <p class="section-sub">We create modern, fast and scalable websites designed to not only look great but also perform. With the power of LSO 360 Automated SEO Plugin, every website is built with SEO from the start to improve search rankings, increase visibility and drive consistent growth. Our focus is to deliver high-performance websites that attract, engage and convert your visitors into customers.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="service-card">
+          <h5><i class="bi bi-check-circle-fill service-check"></i>Website Design Services</h5>
+          <p>Our website design services focus on creating clean, modern and user-friendly designs that represent your brand effectively. We build responsive layouts that deliver a smooth experience across all devices and help improve user engagement.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="service-card">
+          <h5><i class="bi bi-check-circle-fill service-check"></i>Web Development Services</h5>
+          <p>We provide reliable and scalable web development solutions using the latest technologies. Our team builds custom websites that are fast, secure and optimized for performance, ensuring long-term business growth.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="service-card">
+          <h5><i class="bi bi-check-circle-fill service-check"></i>LSO 360 Automated SEO Plugin</h5>
+          <p>With LSO 360 Automated SEO Plugin, your website is built with smart, automated SEO from the start. It helps improve search rankings, increase visibility and generate consistent traffic without heavy manual effort, giving your business a strong competitive advantage.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="service-card">
+          <h5><i class="bi bi-check-circle-fill service-check"></i>Ecommerce Website Development</h5>
+          <p>Our ecommerce development services are designed to build powerful and scalable online stores. We create platforms that make it easy to manage products, orders and customers while delivering a seamless shopping experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PORTFOLIO ═══ -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="text-center mb-4">
+      <div class="section-label"><i class="bi bi-circle-fill" style="font-size:8px;"></i> Featured Work</div>
+      <h2 class="section-title">Our Latest <span class="highlight">Web Projects</span></h2>
+      <p class="section-sub">See how we've helped businesses transform their digital presence</p>
+    </div>
+    <div class="portfolio-grid">
+      <!-- Project 1: Dfixkart -->
+      <div class="portfolio-card">
+        <img src="./Images/Web_01.jpeg" alt="Dfixkart Website">
+        <div class="portfolio-overlay">
+          <div class="portfolio-content-wrap">
+            <h5>Dfixkart</h5>
+            <p>Durable tapes designed for long-lasting performance.</p>
+            <a href="https://dfixkart.com/" target="_blank" class="btn-view">View Website <i class="bi bi-box-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: German With Deep -->
+      <div class="portfolio-card">
+        <img src="./Images/Web_02.jpeg" alt="German With Deep">
+        <div class="portfolio-overlay">
+          <div class="portfolio-content-wrap">
+            <h5>German With Deep</h5>
+            <p>Educational platform for language learning and online courses.</p>
+            <a href="https://germanwithdeep.com/" target="_blank" class="btn-view">View Website <i class="bi bi-box-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Dipe Institute -->
+      <div class="portfolio-card">
+        <img src="./Images/Web_03.jpg" alt="Dipe Institute">
+        <div class="portfolio-overlay">
+          <div class="portfolio-content-wrap">
+            <h5>Dipe Institute</h5>
+            <p>Professional training portal for skill development and certification.</p>
+            <a href="https://dipeinstitute.com/" target="_blank" class="btn-view">View Website <i class="bi bi-box-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label"><i class="bi bi-currency-dollar"></i> Flexible Pricing</div>
+      <h2 class="section-title">Choose Your <span class="highlight">Perfect Plan</span></h2>
+      <p class="section-sub">Transparent pricing with no hidden costs. Select the package that fits your business needs.</p>
+    </div>
+    <div class="row g-4 align-items-stretch">
+      <!-- Starter -->
+      <div class="col-md-4">
+        <div class="pricing-card h-100">
+          <div class="pricing-icon"><i class="bi bi-rocket-takeoff"></i></div>
+          <h4>Starter</h4>
+          <p class="sub">Perfect for small businesses & startups</p>
+          <div class="price-label">Starting from</div>
+          <div class="price-amt">₹34,999</div>
+          <ul class="feature-items">
+            <li><i class="bi bi-check-lg"></i>Up to 5 pages website</li>
+            <li><i class="bi bi-check-lg"></i>Responsive mobile-friendly design</li>
+            <li><i class="bi bi-check-lg"></i>Basic SEO setup</li>
+            <li><i class="bi bi-check-lg"></i>Contact form integration</li>
+            <li><i class="bi bi-check-lg"></i>Social media integration</li>
+            <li><i class="bi bi-check-lg"></i>SSL certificate included</li>
+            <li><i class="bi bi-check-lg"></i>30 days free support</li>
+          </ul>
+          <button class="btn-get-started" data-bs-toggle="modal" data-bs-target="#quoteModal">Get Started &nbsp;→</button>
+        </div>
+      </div>
+      <!-- Professional -->
+      <div class="col-md-4">
+        <div class="popular-badge">⭐ MOST POPULAR</div>
+        <div class="pricing-card popular h-100" style="border-radius:0 0 16px 16px;">
+          <div class="pricing-icon"><i class="bi bi-lightning-charge"></i></div>
+          <h4>Professional</h4>
+          <p class="sub">Best for growing businesses & brands</p>
+          <div class="custom-price">Custom Pricing</div>
+          <div class="custom-price-sub">Tailored to your growth needs</div>
+          <ul class="feature-items">
+            <li><i class="bi bi-check-lg"></i>15–20 pages website</li>
+            <li><i class="bi bi-check-lg"></i>Custom UI/UX design</li>
+            <li><i class="bi bi-check-lg"></i>Advanced SEO with LSO 360 Plugin</li>
+            <li><i class="bi bi-check-lg"></i>Speed & performance optimization</li>
+            <li><i class="bi bi-check-lg"></i>CMS integration (WordPress or custom)</li>
+            <li><i class="bi bi-check-lg"></i>Blog setup & customization</li>
+            <li><i class="bi bi-check-lg"></i>Google Analytics & tracking setup</li>
+            <li><i class="bi bi-check-lg"></i>3–6 months free support</li>
+          </ul>
+          <button class="btn-contact-price" data-bs-toggle="modal" data-bs-target="#quoteModal">Contact for Pricing &nbsp;→</button>
+        </div>
+      </div>
+      <!-- Enterprise -->
+      <div class="col-md-4">
+        <div class="pricing-card h-100">
+          <div class="pricing-icon"><i class="bi bi-trophy"></i></div>
+          <h4>Enterprise</h4>
+          <p class="sub">For large businesses & high-scale projects</p>
+          <div class="custom-price">Custom Pricing</div>
+          <div class="custom-price-sub">Tailored for high-scale needs</div>
+          <ul class="feature-items">
+            <li><i class="bi bi-check-lg"></i>Unlimited pages website</li>
+            <li><i class="bi bi-check-lg"></i>Premium custom design & development</li>
+            <li><i class="bi bi-check-lg"></i>Full SEO automation with LSO 360</li>
+            <li><i class="bi bi-check-lg"></i>Advanced ecommerce & custom features</li>
+            <li><i class="bi bi-check-lg"></i>API integrations & custom modules</li>
+            <li><i class="bi bi-check-lg"></i>Multi-language support</li>
+            <li><i class="bi bi-check-lg"></i>Dedicated project manager</li>
+            <li><i class="bi bi-check-lg"></i>Priority support (24/7)</li>
+            <li><i class="bi bi-check-lg"></i>6–12 months free support</li>
+            <li><i class="bi bi-check-lg"></i>Ongoing performance monitoring</li>
+          </ul>
+          <button class="btn-contact-price" data-bs-toggle="modal" data-bs-target="#quoteModal">Contact for Pricing &nbsp;→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TECH PARTNERS ═══ -->
+<!-- <section class="tech-partners">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label"><i class="bi bi-award"></i> Certified Partners</div>
+      <h2 class="section-title">Official Technology Partners</h2>
+      <p class="section-sub">Trusted and certified by industry-leading platforms</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-3">
+        <div class="partner-card text-center">
+          <div style="font-size:28px;font-weight:900;color:#333;margin-bottom:8px;">ⓦ WORDPRESS</div>
+          <div class="partner-badge badge-blue"><i class="bi bi-star-fill"></i> Certified Expert</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="partner-card highlighted text-center">
+          <div style="font-size:22px;font-weight:900;color:#2c6ecb;margin-bottom:8px;">🛍️ shopify</div>
+          <div class="partner-badge badge-primary"><i class="bi bi-star-fill"></i> Official Partner</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="partner-card text-center">
+          <div style="font-size:20px;font-weight:900;color:#e01e63;margin-bottom:8px;">Ⓔ Elementor Expert</div>
+          <div class="partner-badge badge-pink"><i class="bi bi-star-fill"></i> Certified Expert</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="partner-card text-center">
+          <div style="font-size:20px;font-weight:900;color:#232f3e;margin-bottom:8px;">aws partner network</div>
+          <div class="partner-badge badge-yellow"><i class="bi bi-star-fill"></i> Cloud Partner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- ═══ STATS ═══ -->
+<section class="stats">
+  <div class="container">
+    <div class="text-center mb-2">
+      <div class="section-label"><i class="bi bi-stars"></i> Our Impact</div>
+      <h2 class="section-title">Trusted by Businesses <span class="highlight">Worldwide</span></h2>
+      <p class="section-sub">Numbers that speak to our commitment and expertise</p>
+    </div>
+    <div class="row g-4 mt-2">
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="bi bi-briefcase"></i></div>
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card highlighted">
+          <div class="stat-icon"><i class="bi bi-graph-up-arrow"></i></div>
+          <div class="stat-number">11+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="bi bi-people"></i></div>
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="bi bi-globe"></i></div>
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Countries Served</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="join-badge"><span class="dot"></span> Join 200+ satisfied clients across the globe</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label"><i class="bi bi-question-circle"></i> Got Questions?</div>
+      <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
+      <p class="section-sub">Everything you need to know about our services and process</p>
+    </div>
+    
+    <div class="faq-container">
+      <!-- FAQ Item 1 -->
+      <div class="faq-item">
+        <div class="faq-header">
+          <h4 class="faq-question">What services do you offer in website design and development?</h4>
+          <div class="faq-icon-box"><i class="bi bi-plus-lg"></i></div>
+        </div>
+        <div class="faq-body">
+          <div class="faq-content">
+            We provide complete website design and web development services, including UI/UX design, custom web development, Shopify development and ecommerce website development. Our team works with businesses to build scalable and high-performance websites tailored to their needs.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 2 -->
+      <div class="faq-item">
+        <div class="faq-header">
+          <h4 class="faq-question">Do you build custom websites for businesses?</h4>
+          <div class="faq-icon-box"><i class="bi bi-plus-lg"></i></div>
+        </div>
+        <div class="faq-body">
+          <div class="faq-content">
+            Yes, we create fully customized websites based on your business needs, brand identity and target audience to ensure better performance and user experience.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 3 -->
+      <div class="faq-item">
+        <div class="faq-header">
+          <h4 class="faq-question">Will my website be mobile-friendly and responsive?</h4>
+          <div class="faq-icon-box"><i class="bi bi-plus-lg"></i></div>
+        </div>
+        <div class="faq-body">
+          <div class="faq-content">
+            Absolutely, all our websites are designed to work smoothly across mobile, tablet and desktop devices for the best user experience.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 4 -->
+      <div class="faq-item">
+        <div class="faq-header">
+          <h4 class="faq-question">Is SEO included with website development?</h4>
+          <div class="faq-icon-box"><i class="bi bi-plus-lg"></i></div>
+        </div>
+        <div class="faq-body">
+          <div class="faq-content">
+            Yes, every website is built with basic SEO, and advanced optimization is powered by LSO 360 Automated SEO Plugin to improve rankings and visibility.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 5 -->
+      <div class="faq-item">
+        <div class="faq-header">
+          <h4 class="faq-question">Can you develop ecommerce websites?</h4>
+          <div class="faq-icon-box"><i class="bi bi-plus-lg"></i></div>
+        </div>
+        <div class="faq-body">
+          <div class="faq-content">
+            Yes, we build scalable ecommerce websites with features like product management, payment gateway integration and smooth checkout experience.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 6 -->
+      <div class="faq-item">
+        <div class="faq-header">
+          <h4 class="faq-question">How long does it take to complete a website?</h4>
+          <div class="faq-icon-box"><i class="bi bi-plus-lg"></i></div>
+        </div>
+        <div class="faq-body">
+          <div class="faq-content">
+            Basic websites take around 5–10 days, while advanced or custom projects may take 2–4 weeks depending on requirements.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Looking for a Website Development <span style="color:var(--primary);">Company?</span></h2>
+    <p>Whether you need website design, web development, Shopify development or ecommerce website development, our team can help you build scalable digital products.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <button class="btn-primary" style="padding:14px 36px;font-size:16px;" data-bs-toggle="modal" data-bs-target="#quoteModal">Get Free Consultation</button>
+      <button class="btn-outline-primary" style="padding:13px 36px;font-size:16px;" onclick="document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });">View Our Portfolio</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="contact">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <div class="footer-logo">
+          <div>
+            <img src="./Images/logo.jpg" alt="GoMilestone Logo" style="max-height: 86px;">
+          </div>
+        </div>
+        <h6 style="color:#fff;font-weight:700;font-size:16px;margin-bottom:10px;">LSO 360 Automated SEO Plugin</h6>
+        <p class="footer-desc">India's leading automated SEO plugin powered by Local Search Optimization technology. Helping businesses get discovered online since 2019. Serving 500+ businesses Pan India..</p>
+        <div class="footer-ratings">
+          <div class="rating-block">
+            <h6>Google Rating</h6>
+            <div class="stars">★★★★★</div>
+            <div class="rating-score">4.9/5.0 Rating</div>
+            <div style="font-size:12px;color:#6b7280;">500+ Reviews</div>
+          </div>
+          <div class="rating-block">
+            <h6>DesignRush Rating</h6>
+            <div class="stars">★★★★★</div>
+            <div class="rating-score">4.9/5.0 Rating</div>
+            <div style="font-size:12px;color:#6b7280;">500+ Reviews</div>
+          </div>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/share/14ZDkGF3y4t/" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-fb" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/lso_360seoplugin/" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-insta" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+              </svg>
+            </a>
+            <a href="https://wa.me/918920841865" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-wa" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path>
+              </svg>
+            </a>
+            <a href="mailto:info@lso360seoplugin.com" class="fsoc fsoc-mail" aria-label="Email">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+              </svg>
+            </a>
+
+            <a href="https://www.youtube.com/@LSO360-seoplugin" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-yt" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.5 6.2a2.99 2.99 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6a2.99 2.99 0 0 0-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a2.99 2.99 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a2.99 2.99 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"></path>
+              </svg>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.lso360.plugindashboard" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-play" aria-label="Google Play Store">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.523 15.3l-3.1-3.1 3.1-3.1L20.9 11c.7.4.7 1.1 0 1.5l-3.377 2.8z"></path>
+                <path d="M3.6 2.2c-.2.2-.4.5-.4.9v17.8c0 .4.2.7.4.9l9.5-9.5L3.6 2.2z"></path>
+                <path d="M17.523 8.7L5.3 1.8c-.5-.3-1.1-.3-1.7 0l10.8 10.8 3.123-3.1z"></path>
+                <path d="M17.523 15.3l-3.123-3.1L3.6 23c.6.3 1.2.3 1.7 0l12.223-7.7z"></path>
+              </svg>
+            </a>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="footer-contact">
+          <h5>Get in Touch</h5>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-icon"><i class="bi bi-envelope"></i></div>
+              <div>
+                <div class="contact-label">Email Us</div>
+                <div class="contact-value">info@gomilestone.com</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon" style="background:#25d366;"><i class="bi bi-whatsapp"></i></div>
+              <div>
+                <div class="contact-label">WhatsApp</div>
+                <div class="contact-value">+91 8527104123</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon" style="background:transparent;font-size:22px;"><i class="bi bi-telephone-forward-fill"></i></div>
+              <div>
+                <!-- <div class="contact-label"><i class="bi bi-telephone-forward-fill"></i></div> -->
+                <div class="contact-value">+91 8527104123</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon" style="background:transparent;font-size:22px;"><i class="bi bi-telephone-forward-fill"></i></div>
+              <div>
+                <div class="contact-label"></div>
+                <div class="contact-value">+91 8920841865</div>
+              </div>
+            </div>
+            <div class="contact-card wide">
+              <div class="contact-icon"><i class="bi bi-geo-alt"></i></div>
+              <div>
+                <div class="contact-label">Head Office</div>
+                <div class="contact-value">448/1, 4rth Floor, Cloud 9, Office Number, Sector-1, Vaishali, Ghaziabad, Uttar Pradesh 201010</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="mb-0">© 2026 LSO 360 Auto SEO Plugin. All rights reserved. Powered by Advertising India.</p>
+  </div>
+</footer>
+
+<!-- ═══ POPUP MODAL ═══ -->
+<div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border: none; border-radius: 16px;">
+      <div class="modal-body p-0">
+        <form action="https://formsubmit.co/info@Lso360seoplugin.com" method="POST" class="quote-card" style="margin: 0; box-shadow: none;">
+          <input type="hidden" name="_captcha" value="false">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Request a Quote</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <input type="text" name="Full Name" class="form-control" placeholder="Full Name *" required/>
+          <div class="phone-row">
+            <select name="Country Code">
+              <option value="+91">+91 (IN)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+1">+1 (US)</option>
+            </select>
+            <input type="tel" name="Mobile Number" placeholder="Mobile Number *" required/>
+          </div>
+          <input type="email" name="Email Address" class="form-control" placeholder="Email ID *" required/>
+          <textarea name="Message" class="form-control" rows="3" placeholder="Message" style="resize:none;margin-bottom:18px;"></textarea>
+          <button type="submit" class="btn-book">Submit Request &nbsp;→</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // FAQ Accordion
+  document.querySelectorAll('.faq-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      const isActive = item.classList.contains('active');
+      
+      // Close all other items
+      document.querySelectorAll('.faq-item').forEach(otherItem => {
+        otherItem.classList.remove('active');
+        const icon = otherItem.querySelector('.faq-icon-box i');
+        if (icon) icon.className = 'bi bi-plus-lg';
+      });
+
+      // Toggle current item
+      if (!isActive) {
+        item.classList.add('active');
+        const icon = header.querySelector('.faq-icon-box i');
+        if (icon) icon.className = 'bi bi-dash-lg';
+      }
+    });
+  });
+
+  function switchTab(el, tab) {
+    document.querySelectorAll('.tab-pill').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.portfolio-content').forEach(c => c.style.display = 'none');
+    el.classList.add('active');
+    document.getElementById('portfolio-' + tab).style.display = 'block';
+  }
+
+  // Smooth scroll nav links
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId.startsWith('#')) {
+        e.preventDefault();
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Navbar border shadow on scroll
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 40) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Auto-show popup after 5 seconds
+  setTimeout(() => {
+    const modalElement = document.getElementById('quoteModal');
+    if (modalElement) {
+      const autoModal = bootstrap.Modal.getOrCreateInstance(modalElement);
+      autoModal.show();
+    }
+  }, 5000);
+</script>
+</body>
+</html>
